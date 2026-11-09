@@ -7,7 +7,6 @@ import { AuthLayout } from "@/components/auth/AuthLayout";
 import { CodeStep } from "@/components/auth/CodeStep";
 import { DetailsStep } from "@/components/auth/DetailsStep";
 import { EmailStep } from "@/components/auth/EmailStep";
-import { useParams } from "next/navigation";
 
 import { object as YupObject, string as YupString } from "yup";
 import { useFormik } from "formik";
@@ -29,10 +28,7 @@ type FormValues = {
 
 type FormValuesWithoutStep = Omit<FormValues, "step">;
 
-export function AuthPage() {
-  const { slug } = useParams<{ slug?: string[] }>();
-  const inviteCode = slug?.[0] ?? "";
-
+export function AuthPage({ inviteCode }: { inviteCode: string | null }) {
   const [isRerouting, setIsRerouting] = useState(false);
 
   const validationSchema = YupObject().shape({
