@@ -1,0 +1,38 @@
+/* Brand colours and type. Change these to re-skin the whole portal. */
+:root {
+  /* Terracotta (signup) */
+  --terracotta: #c8401f;
+  --terracotta-deep: #a8341a;
+  --brown: #2a0e07;
+  --brown-line: #4a2418;
+  --brown-soft: #3a1a10;
+  --cream: #fff1e0;
+  --salmon: #f28b6e;
+  --salmon-hover: #ffb39c;
+  --muted-on-brown: #c9a89c;
+  --text-on-brown: #d9b8ac;
+  --faint-on-brown: #b8968a;
+  --blush: #ffe3d8;
+  --coral: #e9775a;
+  --lock-grey: #a8a399;
+  --error-on-dark: #ffd27a;
+
+  /* Light (welcome) */
+  --paper: #fff4e8;
+  --paper-2: #fff9f2;
+  --white: #ffffff;
+  --sand: #f6dcc8;
+  --sand-line: #ebcfb9;
+  --sand-soft: #f3e2d4;
+  --ink: #2a0e07;
+  --ink-muted: #8a5a48;
+  --ink-faint: #c8a896;
+  --rose-text: #e9c8ba;
+  --warning-text: #8e2a12;
+
+  --font: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-lg: 8px;
+  --ease-out: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
