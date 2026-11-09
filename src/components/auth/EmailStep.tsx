@@ -5,6 +5,7 @@ import { InviterBanner } from "./AuthAside";
 import { TermsNote } from "./TermsNote";
 import useRealtorsLogin from "@/hooks/useRealtorLogin";
 import { Inviter } from "@/api/types";
+import { useSession } from "@/auth/SessionContext";
 
 interface Props {
   inviter: Inviter | null;
@@ -27,6 +28,10 @@ export function EmailStep({
   onCodeSent,
 }: Props) {
   const [error, setError] = useState("");
+  const { storeData } = useSession();
+
+  const termsUrl = storeData?.agent_document ?? null;
+  const privacyUrl = storeData?.agent_privacy_policy ?? null;
 
   const isInvalid = !!error || emailIsInvalid;
 
@@ -93,7 +98,7 @@ export function EmailStep({
           >
             Continue
           </Button>
-          <TermsNote />
+          <TermsNote privacyUrl={privacyUrl} termsUrl={termsUrl} />
         </div>
       </form>
     </div>

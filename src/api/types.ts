@@ -193,3 +193,73 @@ export type RealtorVerificationResponse = {
     token: string;
   };
 };
+export interface StoreInfoResponse {
+  data: StoreInfo;
+  business?: string;
+}
+
+export type StoreInfo = {
+  requested_call: boolean;
+  demo_link?: string;
+  business_id: string;
+  business_name: string;
+  store_name: string;
+  store_link: string;
+  theme_name: string;
+  theme_mode: string;
+  theme_color: string;
+  agent_active: boolean;
+  auto_pay_enabled: boolean;
+  gateway_disabled: boolean;
+  service_down: boolean;
+  currency: string;
+  country: string;
+  offset: string;
+  co_ownership_active: boolean;
+  company_image?: string;
+  dark_logo?: string;
+  light_logo?: string;
+  favicon_light?: string;
+  favicon_dark?: string;
+  agent_privacy_policy?: string;
+  customer_privacy_policy?: string;
+  fractions_enabled: boolean;
+  about_us?: string;
+  whatsapp_url?: string;
+  agent_status: boolean;
+  co_ownership: boolean;
+  secondary_market: boolean;
+  wallet_features: boolean;
+  realtor_repoId?: string;
+  realtor_projectId?: string;
+  realtor_url: string;
+  sub_theme: string;
+  web_app_template: {
+    id: number;
+    name: string;
+    theme_name: string;
+    sub_theme: string;
+    thumbnail?: string;
+    large_image?: string;
+    description?: string;
+    vercel_project_id: string;
+    dev_branch: string;
+    prod_branch: string;
+    is_active: boolean;
+    is_coming_soon: boolean;
+    price: string;
+    created_at: string;
+    updated_at: string;
+  };
+  social_links: {
+    facebook?: string;
+    instagram?: string;
+    twitter?: string;
+    linkedin?: string;
+  };
+  email: string;
+  company_address: string;
+  smart_plan: boolean;
+  agent_document?: string;
+  customer_document?: string;
+};

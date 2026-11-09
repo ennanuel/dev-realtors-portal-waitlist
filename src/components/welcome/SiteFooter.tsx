@@ -2,7 +2,13 @@ import { config } from "@/constants/config";
 import { Wordmark } from "../ui/Wordmark";
 
 /** Legal line, then the giant wordmark stretched across the full width. */
-export function SiteFooter() {
+export function SiteFooter({
+  termsUrl,
+  privacyUrl,
+}: {
+  termsUrl: string | null;
+  privacyUrl: string | null;
+}) {
   return (
     <>
       <footer className="site-footer">
@@ -12,8 +18,8 @@ export function SiteFooter() {
             <a href={`mailto:${config.supportEmail}`}>{config.supportEmail}</a>
           </span>
           <nav aria-label="Legal">
-            <a href={config.termsUrl}>Terms of Service</a>
-            <a href={config.privacyUrl}>Privacy Policy</a>
+            {termsUrl && <a href={termsUrl}>Terms of Service</a>}
+            {privacyUrl && <a href={privacyUrl}>Privacy Policy</a>}
           </nav>
         </div>
       </footer>
