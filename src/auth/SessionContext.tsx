@@ -7,7 +7,7 @@ import {
   useState,
   type ReactNode,
 } from "react";
-import { AuthUser } from "@/api/types";
+import { AuthUser, StoreInfo } from "@/api/types";
 import { usePathname } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { fetchRealtorSettingsInfo } from "@/api/auth";
@@ -17,11 +17,14 @@ import {
   REALTOR_TOKEN_SESSION_KEY,
 } from "@/constants/routes";
 import { isAxiosError } from "axios";
+import { getStoreInfo } from "@/api/store";
 
 interface SessionState {
   realtor: AuthUser | null;
   token: string | null;
   restoring: boolean;
+  isLoadingStoreData: boolean;
+  storeData: StoreInfo | null;
   isNewAccount: boolean;
   signOut(): Promise<void>;
 }
@@ -35,6 +38,13 @@ export function SessionProvider({ children }: { children: ReactNode }) {
   const [realtor, setRealtor] = useState<AuthUser | null>(null);
   const [isNewAccount, setIsNewAccount] = useState(false);
   const [isAuthenticating, setIsAuthenticating] = useState(true);
+
+  const { isLoading: isLoadingStoreData, data: storeInfoData } = useQuery({
+    queryKey: ["store-info"],
+    queryFn: getStoreInfo,
+  });
+
+  const storeData = storeInfoData?.data;
 
   const {
     isLoading: restoring,
@@ -115,11 +125,22 @@ export function SessionProvider({ children }: { children: ReactNode }) {
     () => ({
       realtor,
       restoring: restoring || isAuthenticating,
+      isLoadingStoreData,
+      storeData: storeData ?? null,
       token,
       isNewAccount,
       signOut,
     }),
-    [realtor, restoring, isAuthenticating, token, isNewAccount, signOut],
+    [
+      realtor,
+      restoring,
+      isAuthenticating,
+      token,
+      isLoadingStoreData,
+      storeData,
+      isNewAccount,
+      signOut,
+    ],
   );
 
   return (

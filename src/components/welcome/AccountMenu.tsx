@@ -9,10 +9,17 @@ import { AuthUser } from "@/api/types";
 interface Props {
   realtor: AuthUser;
   onLogout(): void;
+  termsUrl: string | null;
+  privacyUrl: string | null;
 }
 
 /** Avatar button that opens the account card: name, reference ID, email, legal links, log out. */
-export function AccountMenu({ realtor, onLogout }: Props) {
+export function AccountMenu({
+  realtor,
+  termsUrl,
+  privacyUrl,
+  onLogout,
+}: Props) {
   const [open, setOpen] = useState(false);
   const wrapRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -63,14 +70,18 @@ export function AccountMenu({ realtor, onLogout }: Props) {
           </div>
 
           <nav className="account-links" aria-label="Account">
-            <a className="account-item" href={config.termsUrl}>
-              <DocumentIcon />
-              Terms and Conditions
-            </a>
-            <a className="account-item" href={config.privacyUrl}>
-              <LockIcon />
-              Privacy Policy
-            </a>
+            {termsUrl && (
+              <a className="account-item" href={termsUrl}>
+                <DocumentIcon />
+                Terms and Conditions
+              </a>
+            )}
+            {privacyUrl && (
+              <a className="account-item" href={privacyUrl}>
+                <LockIcon />
+                Privacy Policy
+              </a>
+            )}
             <hr />
             <button
               type="button"

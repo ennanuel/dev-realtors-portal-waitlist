@@ -16,9 +16,12 @@ import { useRouter } from "next/navigation";
  * a welcome, the event ticket with its countdown, their invite link and their downline.
  */
 export function WelcomePage() {
-  const { realtor, isNewAccount, signOut } = useSession();
+  const { realtor, isNewAccount, storeData, signOut } = useSession();
   const downline = useDownline();
   const router = useRouter();
+
+  const termsUrl = storeData?.agent_document ?? null;
+  const privacyUrl = storeData?.agent_privacy_policy ?? null;
 
   if (!realtor) return null;
 
@@ -35,7 +38,12 @@ export function WelcomePage() {
   return (
     <div className="welcome">
       <div className="welcome-inner">
-        <SiteHeader realtor={realtor} onLogout={logout} />
+        <SiteHeader
+          realtor={realtor}
+          onLogout={logout}
+          privacyUrl={privacyUrl}
+          termsUrl={termsUrl}
+        />
 
         {inviteIgnored && (
           <p className="banner">
@@ -105,7 +113,7 @@ export function WelcomePage() {
         </div>
       </div>
 
-      <SiteFooter />
+      <SiteFooter termsUrl={termsUrl} privacyUrl={privacyUrl} />
     </div>
   );
 }
