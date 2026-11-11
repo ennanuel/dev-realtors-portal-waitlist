@@ -83,3 +83,29 @@ export const fetchRealtorSettingsInfo = async () => {
   );
   return response.data;
 };
+
+export type ReferralRealtor = {
+  id: number;
+  agent_id: string;
+  first_name: string;
+  last_name: string;
+  email: string;
+  avatar: string | null;
+  phone: string;
+  country_code: string;
+};
+
+type ReferralInfoResponse = {
+  message: "Agent retrieved successfully";
+  status: true;
+  data: ReferralRealtor;
+};
+
+export const fetchRealtorByReferralId = async (
+  refId: string,
+): Promise<ReferralInfoResponse> => {
+  const response = await axios.get(
+    `${BaseURL_TWO}/user/agent/referral/${refId}`,
+  );
+  return response.data;
+};
