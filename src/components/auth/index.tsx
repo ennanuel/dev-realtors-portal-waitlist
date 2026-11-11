@@ -17,6 +17,8 @@ import {
 } from "@/constants/routes";
 import { setSession } from "@/lib/sessionmanager";
 import LoadingState from "../ui/LoadingState";
+import { useQuery } from "@tanstack/react-query";
+import { fetchRealtorByReferralId } from "@/api/auth";
 
 type Step = "email" | "code" | "details";
 
@@ -92,17 +94,37 @@ export function AuthPage({ inviteCode }: { inviteCode: string | null }) {
 
   const backToEmail = () => setStep("email");
 
-  const isCheckingInviteStatus = false;
-  const isInviteInvalid = false;
-  const inviter: Inviter | null = null;
+  const {
+    isLoading: isCheckingInviteStatus,
+    data: inviter = null,
+    isError: isInviteInvalid,
+  } = useQuery({
+    queryKey: [inviteCode, "inviter_details"],
+    queryFn: async () => {
+      const result = await fetchRealtorByReferralId(inviteCode!);
 
-  if (isRerouting) return <LoadingState />;
+      if (result?.data?.id === null || result?.data?.id === undefined)
+        return null;
+
+      const inviterDetails: Inviter = {
+        firstName: result?.data?.first_name,
+        lastName: result?.data?.last_name,
+        inviteCode: inviteCode ?? "",
+      };
+
+      return inviterDetails;
+    },
+    enabled: !!inviteCode,
+  });
+
+  if (isRerouting || (isCheckingInviteStatus && !!inviteCode))
+    return <LoadingState />;
 
   return (
     <AuthLayout
       aside={isCheckingInviteStatus ? null : <AuthAside inviter={inviter} />}
     >
-      {isInviteInvalid && formik?.values?.step === "email" && (
+      {Boolean(isInviteInvalid && formik?.values?.step === "email") && (
         <p className="notice">
           This invite link isn't valid any more. You can still sign up below.
         </p>
