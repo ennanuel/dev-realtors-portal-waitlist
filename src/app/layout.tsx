@@ -15,8 +15,8 @@ const poppinsFont = Manrope({
 });
 
 export const metadata: Metadata = {
-  title: "Rinwa Realty Realtors",
-  description: "Rinwa Realty Realtors",
+  title: "Annuva Homes Realtors",
+  description: "Annuva Homes Realtors",
 };
 
 export default function RootLayout({

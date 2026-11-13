@@ -19,12 +19,12 @@ const getEventDateLabel = (options?: { isShort?: boolean }) => {
 };
 
 export const config = {
-  brandName: "Rinwa Realty",
-  /** Short name used in casual copy, e.g. "Tolu wants you on Rinwa." */
-  shortName: "Rinwa",
+  brandName: "Annuva Realty",
+  /** Short name used in casual copy, e.g. "Tolu wants you on Annuva." */
+  shortName: "Annuva",
   /** Large decorative word at the bottom of pages. */
-  wordmark: "RINWA",
-  supportEmail: "realtors@rinwarealty.ng",
+  wordmark: "Annuva",
+  supportEmail: "realtors@Annuvahomes.ng",
   termsUrl: "/terms",
   privacyUrl: "/privacy",
 
@@ -35,7 +35,7 @@ export const config = {
     longLabel: getEventDateLabel(),
   },
 
-  /** Public base for invite links, e.g. "https://realtors.rinwarealty.ng". Defaults to the current site. */
+  /** Public base for invite links, e.g. "https://realtors.annuvahomes.ng". Defaults to the current site. */
   inviteBaseUrl:
     typeof window === "undefined"
       ? ""
