@@ -14,7 +14,7 @@ export function AuthAside({ inviter }: { inviter: Inviter | null }) {
           letterSpacing: "-0.02ch",
         }}
       >
-        <h2>Sell {config.brandName} homes with your own link.</h2>
+        <h2>Sell {config.brandName} with your own link.</h2>
         <p>
           Live prices and availability, a sales link with your name on it, and
           every commission tracked to you.
@@ -39,8 +39,8 @@ export function AuthAside({ inviter }: { inviter: Inviter | null }) {
         {inviter.firstName} wants you on {config.shortName}.
       </h2>
       <p>
-        {fullName(inviter)} invited you to sell {config.brandName} homes. Sign
-        up with your email and you join {inviter.firstName}'s network.
+        {fullName(inviter)} invited you to sell {config.brandName}. Sign up with
+        your email and you join {inviter.firstName}'s network.
       </p>
     </div>
   );
