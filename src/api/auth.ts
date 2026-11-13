@@ -105,7 +105,7 @@ export const fetchRealtorByReferralId = async (
   refId: string,
 ): Promise<ReferralInfoResponse> => {
   const response = await axios.get(
-    `${BaseURL_TWO}/user/agent/referral/${refId}`,
+    `${BaseURL_ONE}/user/agent/referral/${refId}`,
   );
   return response.data;
 };
