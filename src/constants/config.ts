@@ -19,7 +19,7 @@ const getEventDateLabel = (options?: { isShort?: boolean }) => {
 };
 
 export const config = {
-  brandName: "Annuva Realty",
+  brandName: "Annuva Homes",
   /** Short name used in casual copy, e.g. "Tolu wants you on Annuva." */
   shortName: "Annuva",
   /** Large decorative word at the bottom of pages. */
