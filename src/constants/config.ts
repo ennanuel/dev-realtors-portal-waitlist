@@ -5,7 +5,7 @@
 
 import { MONTHS } from "@/constants/date";
 
-const EVENT_DATE = new Date("2026-11-28T10:00:00+01:00");
+const EVENT_DATE = new Date("2026-12-19T10:00:00+01:00");
 
 const getEventDate = () => EVENT_DATE;
 const getEventDateLabel = (options?: { isShort?: boolean }) => {
