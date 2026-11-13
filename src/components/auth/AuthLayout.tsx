@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { config } from "@/constants/config";
+import { Box } from "@chakra-ui/react";
 
 interface Props {
   /** Left side on desktop (hidden on mobile). */
@@ -22,9 +23,13 @@ export function AuthLayout({ aside, children }: Props) {
           {children}
         </section>
       </main>
-      <div className="auth-wordmark" aria-hidden="true">
+      <Box
+        className="auth-wordmark"
+        aria-hidden="true"
+        textTransform="uppercase"
+      >
         {config.wordmark}
-      </div>
+      </Box>
     </div>
   );
 }
